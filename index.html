@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For Trisha ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#ff9a9e,#fecfef);
+  text-align: center;
+}
+
+/* Card */
+.card {
+  background: white;
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 2;
+  max-width: 320px;
+}
+
+h1 {
+  color: #ff4d6d;
+}
+
+img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 15px 0;
+  border: 4px solid #ff4d6d;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.2s;
+}
+
+#yes {
+  background: #4CAF50;
+  color: white;
+}
+
+#no {
+  background: #ff4d6d;
+  color: white;
+  position: relative;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity:1;}
+  100% { transform: translateY(-110vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC (autoplay when user taps anywhere) -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <h1>Trisha ❤️</h1>
+
+  <!-- ADD YOUR PHOTO FILE -->
+  <img src="photo.jpg" alt="us">
+
+  <h2>Will you be my Valentine? 🥰</h2>
+  <p id="msg">You mean the world to me 💕</p>
+
+  <button id="yes" onclick="sayYes()">Yes 💖</button>
+  <button id="no" onmouseover="moveNo()">No 😜</button>
+</div>
+
+<!-- Confetti library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+/* Play music on first click */
+document.body.addEventListener("click", () => {
+  document.getElementById("music").play();
+}, { once: true });
+
+/* YES button */
+function sayYes() {
+  document.getElementById("msg").innerHTML =
+    "Yayyyy!! I love you so much Trisha ❤️😍";
+
+  confetti({
+    particleCount: 200,
+    spread: 90,
+    origin: { y: 0.6 }
+  });
+}
+
+/* Funny moving NO button */
+function moveNo() {
+  const btn = document.getElementById("no");
+  btn.style.position = "absolute";
+  btn.style.top = Math.random()*window.innerHeight + "px";
+  btn.style.left = Math.random()*window.innerWidth + "px";
+}
+
+/* Floating hearts animation */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.fontSize = (15 + Math.random()*20) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}, 300);
+</script>
+
+</body>
+</html>
